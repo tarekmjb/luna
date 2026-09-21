@@ -12,13 +12,12 @@ function showStep(i){
   [...progress.children].forEach((d,n)=>d.classList.toggle("on",n<=i));
   counter.textContent=`${String(i+1).padStart(2,"0")} / ${String(screens.length).padStart(2,"0")}`;
 
-  // Always open each page from the top on phones.
-  const activeScreen=screens[i];
-  if(activeScreen){
-    activeScreen.scrollTop=0;
-    const nested=activeScreen.querySelector(".details-scroll,.cake-scroll,.final-scroll");
-    if(nested) nested.scrollTop=0;
-  }
+  // Native mobile scrolling: always open the next screen at its top.
+  requestAnimationFrame(()=>{
+    window.scrollTo({top:0,left:0,behavior:"auto"});
+    document.documentElement.scrollTop=0;
+    document.body.scrollTop=0;
+  });
 
   buzz(10);
 }
