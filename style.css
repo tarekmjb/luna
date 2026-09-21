@@ -238,3 +238,544 @@ h1 span,h2 span{color:var(--rose)}
   .screen{height:100%}
   .details-scroll,.cake-scroll,.final-scroll{height:calc(100% - 52px)}
 }
+
+
+/* =========================================================
+   MOBILE SCROLL / VIEWPORT FIX
+   Keeps the same design, but prevents content from being
+   clipped on shorter phones and mobile browser viewports.
+   ========================================================= */
+
+html{
+  min-height:100%;
+  height:auto;
+  overflow-x:hidden;
+}
+
+body{
+  min-height:100svh;
+  min-height:100dvh;
+  height:auto;
+  overflow:hidden;
+  overscroll-behavior-y:none;
+}
+
+.app{
+  height:100svh;
+  height:100dvh;
+  min-height:100svh;
+  min-height:100dvh;
+  overflow:hidden;
+}
+
+/* Each active page becomes its own smooth mobile scroll area. */
+.screen{
+  height:100svh;
+  height:100dvh;
+  min-height:100svh;
+  min-height:100dvh;
+  overflow-y:auto;
+  overflow-x:hidden;
+  -webkit-overflow-scrolling:touch;
+  overscroll-behavior-y:contain;
+  scrollbar-width:none;
+  padding-bottom:max(28px, calc(23px + env(safe-area-inset-bottom)));
+}
+
+.screen::-webkit-scrollbar{
+  display:none;
+}
+
+/* Avoid nested scrolling: the whole page scrolls instead. */
+.details-scroll,
+.cake-scroll,
+.final-scroll{
+  width:100%;
+  height:auto !important;
+  min-height:0;
+  margin-top:0;
+  overflow:visible !important;
+  padding-top:0;
+  padding-bottom:42px;
+}
+
+/* Give the long pages enough space below the fixed header. */
+.screen[data-step="3"],
+.screen[data-step="4"],
+.screen[data-step="5"]{
+  padding-top:max(82px, calc(66px + env(safe-area-inset-top)));
+}
+
+/* Prevent flex centering from hiding top/bottom content on short screens. */
+.screen .content{
+  margin-top:auto;
+  margin-bottom:auto;
+  flex-shrink:0;
+}
+
+@media (max-height:760px){
+  .screen{
+    justify-content:flex-start;
+    padding-top:max(74px, calc(60px + env(safe-area-inset-top)));
+  }
+
+  .screen .content{
+    margin-top:18px;
+    margin-bottom:24px;
+  }
+
+  .bottom{
+    margin-top:auto;
+    padding-top:18px;
+  }
+
+  .cover-emblem{
+    width:72px;
+    height:72px;
+    margin-bottom:17px;
+  }
+
+  .cover-emblem .heart{
+    font-size:36px;
+  }
+
+  h1{
+    font-size:clamp(38px,10.5vw,48px);
+  }
+
+  h2{
+    font-size:clamp(32px,9vw,42px);
+  }
+
+  .lead{
+    font-size:13.5px;
+    line-height:1.65;
+  }
+
+  .cover-note{
+    margin-top:18px;
+  }
+
+  .micro-details{
+    margin-top:14px;
+  }
+
+  .mode-switch{
+    margin-top:20px;
+  }
+
+  .rx-paper{
+    margin-top:18px;
+  }
+
+  .cake-stage{
+    transform:none !important;
+    margin:4px 0 2px;
+  }
+
+  .luxury-cake{
+    width:min(315px,92vw);
+  }
+}
+
+/* Extra protection for very small phones. */
+@media (max-height:650px){
+  .screen{
+    padding-left:16px;
+    padding-right:16px;
+  }
+
+  .page-number{
+    width:40px;
+    height:40px;
+    margin-bottom:14px;
+  }
+
+  .eyebrow{
+    margin-bottom:10px;
+  }
+
+  h1,h2{
+    margin-bottom:13px;
+  }
+
+  .primary{
+    min-height:54px;
+  }
+
+  .details-scroll,
+  .cake-scroll,
+  .final-scroll{
+    padding-bottom:28px;
+  }
+}
+
+
+
+/* =========================================================
+   LONG NAME FIX — COVER + FINAL
+   Keeps "Linouuuuuuuuuche" fully visible on every phone.
+   ========================================================= */
+
+/* Give the birthday headings their own safe width. */
+.cover h1,
+.final-center h1{
+  width:100%;
+  max-width:100%;
+  padding-left:0;
+  padding-right:0;
+  overflow:visible;
+}
+
+/* The long name gets its own responsive type size. */
+.cover h1 span,
+.final-center h1 span{
+  display:block;
+  width:100%;
+  max-width:100%;
+  margin-left:auto;
+  margin-right:auto;
+  font-size:clamp(27px, 8.2vw, 43px) !important;
+  line-height:1.02;
+  letter-spacing:-0.045em;
+  white-space:nowrap;
+  text-align:center;
+  overflow:visible;
+}
+
+/* Keep "Happy 26th" / "Happy Birthday" large while the name scales separately. */
+.cover h1,
+.final-center h1{
+  font-size:clamp(42px, 10.8vw, 64px);
+}
+
+/* Narrow phones */
+@media (max-width:420px){
+  .cover h1 span,
+  .final-center h1 span{
+    font-size:clamp(26px, 8vw, 34px) !important;
+    letter-spacing:-0.05em;
+  }
+}
+
+/* Very narrow phones */
+@media (max-width:360px){
+  .cover h1 span,
+  .final-center h1 span{
+    font-size:25px !important;
+    letter-spacing:-0.055em;
+  }
+}
+
+/* Tiny-width safety net */
+@media (max-width:320px){
+  .cover h1 span,
+  .final-center h1 span{
+    font-size:23px !important;
+  }
+}
+
+
+/* =========================================================
+   PHONE-DIMENSION TUNING
+   Tested layout targets:
+   360x800, 375x812, 390x844, 393x852, 412x915, 430x932
+   ========================================================= */
+
+:root{
+  --phone-pad-x:20px;
+  --phone-top-gap:82px;
+  --phone-bottom-gap:24px;
+}
+
+.app{
+  width:100%;
+  max-width:430px;
+  margin:0 auto;
+}
+
+.screen{
+  padding-left:var(--phone-pad-x);
+  padding-right:var(--phone-pad-x);
+  padding-top:max(var(--phone-top-gap), calc(66px + env(safe-area-inset-top)));
+  padding-bottom:max(var(--phone-bottom-gap), calc(18px + env(safe-area-inset-bottom)));
+}
+
+/* 430px phones */
+@media (max-width:430px){
+  :root{
+    --phone-pad-x:20px;
+  }
+
+  .cover h1,
+  .final-center h1{
+    font-size:clamp(42px,10.8vw,58px);
+  }
+
+  .cover h1 span,
+  .final-center h1 span{
+    font-size:clamp(28px,7.9vw,34px) !important;
+  }
+
+  .luxury-cake{
+    width:min(340px,91vw);
+  }
+}
+
+/* 412px phones */
+@media (max-width:412px){
+  :root{
+    --phone-pad-x:18px;
+  }
+
+  .cover h1 span,
+  .final-center h1 span{
+    font-size:31px !important;
+  }
+
+  .lead{
+    max-width:345px;
+  }
+}
+
+/* 393–390px phones */
+@media (max-width:393px){
+  :root{
+    --phone-pad-x:17px;
+  }
+
+  .brand{
+    font-size:8px;
+    letter-spacing:.14em;
+  }
+
+  .progress span{
+    width:15px;
+  }
+
+  .cover h1,
+  .final-center h1{
+    font-size:44px;
+  }
+
+  .cover h1 span,
+  .final-center h1 span{
+    font-size:29px !important;
+    letter-spacing:-.055em;
+  }
+
+  .cover-note p{
+    font-size:16px;
+  }
+
+  .luxury-cake{
+    width:min(325px,92vw);
+  }
+}
+
+/* 375px phones */
+@media (max-width:375px){
+  :root{
+    --phone-pad-x:16px;
+  }
+
+  .cover h1,
+  .final-center h1{
+    font-size:42px;
+  }
+
+  .cover h1 span,
+  .final-center h1 span{
+    font-size:27px !important;
+    letter-spacing:-.06em;
+  }
+
+  .lead{
+    font-size:13.5px;
+  }
+
+  .rx-paper{
+    padding-left:15px;
+    padding-right:15px;
+  }
+
+  .luxury-cake{
+    width:min(312px,92vw);
+  }
+}
+
+/* 360px phones */
+@media (max-width:360px){
+  :root{
+    --phone-pad-x:15px;
+  }
+
+  .topbar{
+    padding-left:15px;
+    padding-right:15px;
+  }
+
+  .brand{
+    font-size:7.5px;
+  }
+
+  .counter{
+    font-size:8px;
+  }
+
+  .progress{
+    gap:3px;
+  }
+
+  .progress span{
+    width:13px;
+  }
+
+  .cover h1,
+  .final-center h1{
+    font-size:39px;
+  }
+
+  .cover h1 span,
+  .final-center h1 span{
+    font-size:25px !important;
+    letter-spacing:-.065em;
+  }
+
+  h2{
+    font-size:34px;
+  }
+
+  .lead{
+    font-size:13px;
+    line-height:1.65;
+  }
+
+  .micro-details{
+    gap:6px;
+    font-size:9px;
+  }
+
+  .switch-track{
+    transform:scale(.92);
+  }
+
+  .luxury-cake{
+    width:min(300px,92vw);
+  }
+
+  .final-letter{
+    padding-left:16px;
+    padding-right:16px;
+  }
+}
+
+/* Short phone screens: 800–844-ish heights */
+@media (max-height:844px){
+  :root{
+    --phone-top-gap:74px;
+  }
+
+  .screen{
+    justify-content:flex-start;
+  }
+
+  .screen .content{
+    margin-top:14px;
+    margin-bottom:20px;
+  }
+
+  .cover-emblem{
+    width:74px;
+    height:74px;
+    margin-bottom:16px;
+  }
+
+  .cover-emblem .heart{
+    font-size:36px;
+  }
+
+  .page-number{
+    margin-bottom:15px;
+  }
+
+  .lead{
+    line-height:1.65;
+  }
+
+  .primary{
+    min-height:54px;
+  }
+
+  .bottom{
+    margin-top:auto;
+    padding-top:16px;
+  }
+
+  .cake-stage{
+    margin-top:0;
+    margin-bottom:0;
+  }
+}
+
+/* Very short devices / browser chrome consuming height */
+@media (max-height:780px){
+  .cover-note{
+    margin-top:15px;
+  }
+
+  .micro-details{
+    margin-top:11px;
+  }
+
+  .mode-switch{
+    margin-top:16px;
+  }
+
+  .rx-paper{
+    margin-top:14px;
+  }
+
+  .luxury-cake{
+    width:min(290px,88vw);
+  }
+
+  .blow-actions{
+    margin-top:-4px;
+  }
+}
+
+/* Landscape phones: prioritize usability */
+@media (orientation:landscape) and (max-height:500px){
+  .screen{
+    padding-top:64px;
+    min-height:100dvh;
+  }
+
+  .screen .content{
+    margin-top:8px;
+  }
+
+  .cover-emblem{
+    width:58px;
+    height:58px;
+    border-radius:20px;
+  }
+
+  h1{
+    font-size:34px;
+  }
+
+  h2{
+    font-size:31px;
+  }
+
+  .cover h1 span,
+  .final-center h1 span{
+    font-size:24px !important;
+  }
+
+  .luxury-cake{
+    width:250px;
+  }
+}
