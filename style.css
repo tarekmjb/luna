@@ -779,3 +779,116 @@ body{
     width:250px;
   }
 }
+
+
+/* =========================================================
+   FINAL MOBILE SCROLL FIX
+   Use the browser's native page scrolling on phones.
+   This is more reliable than nested/fixed app scrolling
+   in iOS Safari and Android browsers.
+   ========================================================= */
+
+html{
+  width:100%;
+  min-height:100%;
+  height:auto !important;
+  overflow-x:hidden;
+  overflow-y:auto !important;
+  -webkit-text-size-adjust:100%;
+}
+
+body{
+  width:100%;
+  min-height:100%;
+  height:auto !important;
+  overflow-x:hidden !important;
+  overflow-y:auto !important;
+  overscroll-behavior-y:auto !important;
+  touch-action:pan-y !important;
+  -webkit-overflow-scrolling:touch;
+}
+
+.app{
+  width:100%;
+  max-width:430px;
+  height:auto !important;
+  min-height:100svh;
+  min-height:100dvh;
+  overflow:visible !important;
+  margin:0 auto;
+}
+
+/* Inactive pages stay hidden; the active page uses normal document flow. */
+.screen{
+  width:100%;
+  height:auto !important;
+  min-height:100svh;
+  min-height:100dvh;
+  overflow:visible !important;
+  touch-action:pan-y !important;
+  -webkit-overflow-scrolling:touch;
+}
+
+.screen.active{
+  display:flex;
+}
+
+/* Long pages must never become nested scroll containers. */
+.details-scroll,
+.cake-scroll,
+.final-scroll{
+  width:100%;
+  height:auto !important;
+  max-height:none !important;
+  min-height:0 !important;
+  overflow:visible !important;
+  overscroll-behavior:auto !important;
+  touch-action:pan-y !important;
+  -webkit-overflow-scrolling:touch;
+  margin-top:0 !important;
+}
+
+/* Keep enough space for the top header while using normal page flow. */
+.screen{
+  padding-top:max(82px, calc(66px + env(safe-area-inset-top)));
+  padding-bottom:max(30px, calc(20px + env(safe-area-inset-bottom)));
+}
+
+/* Avoid flex alignment trapping content outside the scrollable document. */
+.screen .content{
+  flex-shrink:0;
+}
+
+@media (max-height:844px){
+  .screen{
+    justify-content:flex-start !important;
+  }
+
+  .screen .content{
+    margin-top:14px !important;
+    margin-bottom:22px !important;
+  }
+
+  .bottom{
+    margin-top:auto;
+    padding-top:18px;
+  }
+}
+
+/* Mobile browsers sometimes suppress touch scroll inside buttons/SVG areas.
+   Explicitly keep vertical panning enabled throughout the main experience. */
+.app,
+.screen,
+.content,
+.details-scroll,
+.cake-scroll,
+.final-scroll,
+.cake-stage,
+.final-center{
+  touch-action:pan-y !important;
+}
+
+/* The interactive controls themselves remain tappable. */
+button{
+  touch-action:manipulation;
+}
