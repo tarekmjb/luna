@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#fff8fb">
+  <title>For Linouuuuuuuuuche ♡</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ambient a1"></div>
+  <div class="ambient a2"></div>
+  <div class="ambient a3"></div>
+  <div class="grain"></div>
+  <div id="floatLayer"></div>
+  <canvas id="confetti"></canvas>
+
+  <main class="app">
+    <header class="topbar">
+      <span class="brand">FOR LINOUUUUUUUUUCHE ♡</span>
+      <div class="progress" id="progress"></div>
+      <span class="counter" id="counter">01 / 06</span>
+    </header>
+
+    <!-- COVER -->
+    <section class="screen active cover" data-step="0">
+      <div class="content center">
+        <div class="cover-emblem">
+          <span class="tiny-cross">✦</span>
+          <span class="heart">♡</span>
+          <span class="tiny-star">✧</span>
+        </div>
+
+        <p class="eyebrow">A VERY SMALL WEBSITE FOR A VERY SPECIAL GIRL</p>
+        <h1>Happy 26th,<br><span>Linouuuuuuuuuche.</span></h1>
+
+        <p class="lead">
+          For my favorite person, my pretty girl,
+          and the doctor who deserves to be celebrated properly today.
+        </p>
+
+        <div class="cover-note">
+          <span class="note-line"></span>
+          <p>Could today be any prettier?<br><strong>Somehow, you still are.</strong></p>
+          <span class="note-line"></span>
+        </div>
+
+        <div class="micro-details">
+          <span>26 today</span>
+          <i>•</i>
+          <span>doctor</span>
+          <i>•</i>
+          <span>my girl ♡</span>
+        </div>
+      </div>
+
+      <div class="bottom">
+        <button class="primary next">Begin your birthday story →</button>
+      </div>
+    </section>
+
+    <!-- OFF DUTY -->
+    <section class="screen" data-step="1">
+      <div class="content center">
+        <div class="page-number">01</div>
+        <p class="eyebrow">FIRST THINGS FIRST</p>
+        <h2>Clock out, birthday girl.</h2>
+        <p class="lead">
+          For today: no patients, no charts, no alarms in this little corner of the internet.
+          Just Linouuuuuuuuuche.
+        </p>
+
+        <button id="modeSwitch" class="mode-switch" aria-label="Switch to birthday mode">
+          <span class="switch-track">
+            <span class="switch-knob">
+              <span class="doctor-icon">🩺</span>
+              <span class="birthday-icon">🎀</span>
+            </span>
+          </span>
+          <span id="modeLabel">ON DUTY</span>
+        </button>
+
+        <div id="offDutyCard" class="off-duty-card">
+          <small>STATUS UPDATED</small>
+          <strong>Doctor mode: off.</strong>
+          <span>Birthday girl mode: very, very on. ♡</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRESCRIPTION -->
+    <section class="screen" data-step="2">
+      <div class="content">
+        <div class="page-number">02</div>
+        <p class="eyebrow">A PRESCRIPTION, BUT FROM MY HEART</p>
+        <h2 class="left">For your 26th year.</h2>
+        <p class="lead left">
+          No choosing. No checklist for you to complete.
+          This is simply what I hope life gives you.
+        </p>
+
+        <div class="rx-paper">
+          <div class="rx-top">
+            <div>
+              <small>FOR</small>
+              <strong>Dr. Linouuuuuuuuuche</strong>
+            </div>
+            <div class="rx-symbol">℞</div>
+          </div>
+
+          <div class="rx-rule"></div>
+
+          <div class="rx-lines">
+            <div><span>01</span><p><strong>Peace</strong> that stays even on heavy days.</p></div>
+            <div><span>02</span><p><strong>Love</strong> that feels safe, honest, and gentle.</p></div>
+            <div><span>03</span><p><strong>Health</strong> for your body, mind, and beautiful heart.</p></div>
+            <div><span>04</span><p><strong>Success</strong> that makes you genuinely proud of yourself.</p></div>
+            <div><span>05</span><p><strong>Rest</strong> without guilt after the days you give too much.</p></div>
+            <div><span>06</span><p><strong>Surprises</strong> so good they make you stop and smile.</p></div>
+          </div>
+
+          <div class="rx-footer">
+            <span>Dosage: every day</span>
+            <span>Refills: unlimited ♡</span>
+          </div>
+
+          <button id="stampBtn" class="stamp-btn">
+            <span id="stampMark">APPROVE ♡</span>
+          </button>
+        </div>
+
+        <p id="stampHint" class="hint left">Tap the seal to make it official.</p>
+      </div>
+    </section>
+
+    <!-- DETAILED WISHES -->
+    <section class="screen" data-step="3">
+      <div class="details-scroll">
+        <div class="page-number">03</div>
+        <p class="eyebrow">THE LITTLE THINGS MATTER TOO</p>
+        <h2 class="left">What I hope 26 feels like for you.</h2>
+        <p class="lead left intro-detail">
+          Because the best wishes are sometimes hidden in tiny everyday details.
+        </p>
+
+        <div class="wish-editorial">
+          <article>
+            <span>01</span>
+            <div>
+              <strong>Quiet after long days.</strong>
+              <p>The kind of evening where your mind finally becomes still.</p>
+            </div>
+          </article>
+
+          <article>
+            <span>02</span>
+            <div>
+              <strong>Warm meals before they go cold.</strong>
+              <p>Because even the doctor deserves to be taken care of properly.</p>
+            </div>
+          </article>
+
+          <article>
+            <span>03</span>
+            <div>
+              <strong>Sleep that actually feels like rest.</strong>
+              <p>Deep, peaceful, phone-on-silent kind of sleep.</p>
+            </div>
+          </article>
+
+          <article>
+            <span>04</span>
+            <div>
+              <strong>People who ask how you are — and mean it.</strong>
+              <p>People who listen to you with the same care you give everyone else.</p>
+            </div>
+          </article>
+
+          <article>
+            <span>05</span>
+            <div>
+              <strong>Little reasons to feel pretty.</strong>
+              <p>A good hair day, your favorite outfit, a compliment at the perfect moment.</p>
+            </div>
+          </article>
+
+          <article>
+            <span>06</span>
+            <div>
+              <strong>Big reasons to feel proud.</strong>
+              <p>Goals reached, doors opening, and moments when you realize how far you’ve come.</p>
+            </div>
+          </article>
+
+          <article>
+            <span>07</span>
+            <div>
+              <strong>Love that never makes you question your worth.</strong>
+              <p>Warm, clear, thoughtful love — the kind your heart deserves.</p>
+            </div>
+          </article>
+
+          <article>
+            <span>08</span>
+            <div>
+              <strong>And a lot of random happiness.</strong>
+              <p>Unexpected flowers. Good coffee. Laughing too much. Beautiful little days.</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="birthday-duty">
+          <small>DOCTOR’S ONLY ASSIGNMENT TODAY</small>
+          <strong>Let yourself be loved. ♡</strong>
+          <span>No other duties accepted.</span>
+        </div>
+
+        <button class="primary next detail-next">Okay… where’s my cake? 🎂</button>
+      </div>
+    </section>
+
+    <!-- CAKE -->
+    <section class="screen cake-screen" data-step="4">
+      <div class="cake-scroll">
+        <div class="page-number">04</div>
+        <p class="eyebrow">THE IMPORTANT PART</p>
+        <h2>Think really hard about your wish, then blow out the candles.</h2>
+        <p class="lead">
+          Take your time. Make it a really beautiful one,
+          Linouuuuuuuuuche.
+        </p>
+
+        <div class="cake-stage">
+          <svg class="luxury-cake" viewBox="0 0 360 360" role="img" aria-label="Pink birthday cake with candles">
+            <defs>
+              <linearGradient id="cakePink" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0" stop-color="#f9b0c9"/>
+                <stop offset=".55" stop-color="#ef89ad"/>
+                <stop offset="1" stop-color="#dd6f99"/>
+              </linearGradient>
+              <linearGradient id="cakeBlush" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0" stop-color="#ffe6ef"/>
+                <stop offset="1" stop-color="#ffc6da"/>
+              </linearGradient>
+              <linearGradient id="cream" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0" stop-color="#fffdfb"/>
+                <stop offset="1" stop-color="#fff0f5"/>
+              </linearGradient>
+              <radialGradient id="strawberry" cx=".35" cy=".3">
+                <stop offset="0" stop-color="#ffbed2"/>
+                <stop offset=".35" stop-color="#f15e90"/>
+                <stop offset="1" stop-color="#cc3f72"/>
+              </radialGradient>
+              <radialGradient id="flameGrad" cx=".5" cy=".72">
+                <stop offset="0" stop-color="#ffffff"/>
+                <stop offset=".22" stop-color="#fff8b7"/>
+                <stop offset=".48" stop-color="#ffc958"/>
+                <stop offset=".76" stop-color="#ff8d3d"/>
+                <stop offset="1" stop-color="#ff6838"/>
+              </radialGradient>
+              <filter id="softShadow" x="-40%" y="-40%" width="180%" height="200%">
+                <feDropShadow dx="0" dy="10" stdDeviation="8" flood-color="#9e5775" flood-opacity=".18"/>
+              </filter>
+              <filter id="flameGlow" x="-150%" y="-150%" width="400%" height="400%">
+                <feGaussianBlur stdDeviation="4" result="blur"/>
+                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+            </defs>
+
+            <!-- shadow + plate -->
+            <ellipse cx="180" cy="323" rx="122" ry="18" fill="#a86b83" opacity=".13"/>
+            <ellipse cx="180" cy="306" rx="138" ry="23" fill="#fff" stroke="#eadce3" stroke-width="5"/>
+            <ellipse cx="180" cy="302" rx="115" ry="12" fill="#f8edf2"/>
+
+            <!-- bottom tier -->
+            <g filter="url(#softShadow)">
+              <path d="M78 197 Q78 180 95 177 H265 Q282 180 282 197 V273 Q282 292 260 298 H100 Q78 292 78 273Z" fill="url(#cakePink)"/>
+              <ellipse cx="180" cy="188" rx="102" ry="29" fill="url(#cream)"/>
+              <path d="M86 190 Q96 208 110 193 Q123 181 134 200 Q145 218 160 196 Q171 179 185 201 Q197 219 211 196 Q224 177 237 197 Q250 214 273 190 V205 H86Z" fill="#fff8fb"/>
+              <rect x="82" y="236" width="196" height="13" rx="6.5" fill="#ef6c9d" opacity=".82"/>
+            </g>
+
+            <!-- middle tier -->
+            <g filter="url(#softShadow)">
+              <path d="M112 132 Q112 118 126 116 H234 Q248 118 248 132 V194 Q248 209 232 213 H128 Q112 209 112 194Z" fill="url(#cakeBlush)"/>
+              <ellipse cx="180" cy="124" rx="68" ry="21" fill="url(#cream)"/>
+              <path d="M116 126 Q124 141 136 128 Q146 117 157 135 Q167 150 179 131 Q191 114 203 134 Q214 150 225 129 Q234 114 244 126 V139 H116Z" fill="#fff8fb"/>
+            </g>
+
+            <!-- top tier -->
+            <g filter="url(#softShadow)">
+              <path d="M143 78 Q143 67 154 65 H206 Q217 67 217 78 V123 Q217 136 204 139 H156 Q143 136 143 123Z" fill="url(#cakePink)"/>
+              <ellipse cx="180" cy="70" rx="37" ry="13" fill="url(#cream)"/>
+            </g>
+
+            <!-- pearl bands -->
+            <g fill="#fff9fb" stroke="#e9cad7" stroke-width="1">
+              <circle cx="103" cy="256" r="4"/><circle cx="126" cy="256" r="4"/><circle cx="149" cy="256" r="4"/><circle cx="172" cy="256" r="4"/>
+              <circle cx="195" cy="256" r="4"/><circle cx="218" cy="256" r="4"/><circle cx="241" cy="256" r="4"/><circle cx="264" cy="256" r="4"/>
+              <circle cx="132" cy="173" r="3.7"/><circle cx="151" cy="173" r="3.7"/><circle cx="170" cy="173" r="3.7"/><circle cx="189" cy="173" r="3.7"/><circle cx="208" cy="173" r="3.7"/><circle cx="227" cy="173" r="3.7"/>
+            </g>
+
+            <!-- bow -->
+            <g transform="translate(180 244)">
+              <path d="M-11 0 C-32 -24 -55 -18 -49 2 C-43 18 -25 14 -10 7Z" fill="#e94e88"/>
+              <path d="M11 0 C32 -24 55 -18 49 2 C43 18 25 14 10 7Z" fill="#e94e88"/>
+              <rect x="-12" y="-9" width="24" height="19" rx="8" fill="#d9437d"/>
+              <path d="M-7 8 L-24 38 L-8 31 L0 43 L4 9Z" fill="#df4a82"/>
+              <path d="M7 8 L24 38 L8 31 L0 43 L-4 9Z" fill="#df4a82"/>
+            </g>
+
+            <!-- plaque -->
+            <ellipse cx="180" cy="221" rx="31" ry="22" fill="#fffaf8" stroke="#efdce4" stroke-width="2"/>
+            <text x="180" y="230" text-anchor="middle" font-family="Playfair Display, serif" font-size="25" font-weight="700" fill="#c85683">26</text>
+
+            <!-- strawberries -->
+            <g>
+              <circle cx="145" cy="99" r="11" fill="url(#strawberry)"/>
+              <circle cx="169" cy="91" r="12" fill="url(#strawberry)"/>
+              <circle cx="193" cy="92" r="12" fill="url(#strawberry)"/>
+              <circle cx="216" cy="101" r="10" fill="url(#strawberry)"/>
+              <path d="M141 88 l6 -8 l5 9" fill="#6aaa70"/>
+              <path d="M165 78 l5 -9 l6 9" fill="#6aaa70"/>
+              <path d="M190 79 l5 -9 l6 10" fill="#6aaa70"/>
+              <path d="M212 91 l5 -8 l6 9" fill="#6aaa70"/>
+            </g>
+
+            <!-- candles -->
+            <g id="candles">
+              <g class="candle-svg" transform="translate(145 52)">
+                <rect x="-5" y="10" width="10" height="42" rx="4" fill="#f37aa8"/>
+                <path d="M-5 18 L5 12 M-5 31 L5 25 M-5 44 L5 38" stroke="#fff5f8" stroke-width="3"/>
+                <rect x="-1" y="4" width="2" height="8" rx="1" fill="#55434a"/>
+                <g class="smoke-svg"><path d="M0 1 C8 -8 -7 -15 3 -26" fill="none" stroke="#9d969a" stroke-width="3" stroke-linecap="round" opacity=".55"/></g>
+                <path class="flame-svg" d="M0 3 C-10 -6 -5 -22 1 -27 C10 -18 10 -4 0 3Z" fill="url(#flameGrad)" filter="url(#flameGlow)"/>
+              </g>
+              <g class="candle-svg" transform="translate(163 40)">
+                <rect x="-5" y="10" width="10" height="48" rx="4" fill="#f29fc0"/>
+                <path d="M-5 19 L5 13 M-5 33 L5 27 M-5 47 L5 41" stroke="#fff5f8" stroke-width="3"/>
+                <rect x="-1" y="4" width="2" height="8" rx="1" fill="#55434a"/>
+                <g class="smoke-svg"><path d="M0 1 C7 -8 -8 -15 2 -27" fill="none" stroke="#9d969a" stroke-width="3" stroke-linecap="round" opacity=".55"/></g>
+                <path class="flame-svg" d="M0 3 C-10 -6 -5 -22 1 -27 C10 -18 10 -4 0 3Z" fill="url(#flameGrad)" filter="url(#flameGlow)"/>
+              </g>
+              <g class="candle-svg" transform="translate(181 34)">
+                <rect x="-5" y="10" width="10" height="52" rx="4" fill="#ed6f9f"/>
+                <path d="M-5 20 L5 14 M-5 35 L5 29 M-5 50 L5 44" stroke="#fff5f8" stroke-width="3"/>
+                <rect x="-1" y="4" width="2" height="8" rx="1" fill="#55434a"/>
+                <g class="smoke-svg"><path d="M0 1 C7 -8 -8 -15 2 -27" fill="none" stroke="#9d969a" stroke-width="3" stroke-linecap="round" opacity=".55"/></g>
+                <path class="flame-svg" d="M0 3 C-10 -6 -5 -22 1 -27 C10 -18 10 -4 0 3Z" fill="url(#flameGrad)" filter="url(#flameGlow)"/>
+              </g>
+              <g class="candle-svg" transform="translate(199 40)">
+                <rect x="-5" y="10" width="10" height="48" rx="4" fill="#f29fc0"/>
+                <path d="M-5 19 L5 13 M-5 33 L5 27 M-5 47 L5 41" stroke="#fff5f8" stroke-width="3"/>
+                <rect x="-1" y="4" width="2" height="8" rx="1" fill="#55434a"/>
+                <g class="smoke-svg"><path d="M0 1 C7 -8 -8 -15 2 -27" fill="none" stroke="#9d969a" stroke-width="3" stroke-linecap="round" opacity=".55"/></g>
+                <path class="flame-svg" d="M0 3 C-10 -6 -5 -22 1 -27 C10 -18 10 -4 0 3Z" fill="url(#flameGrad)" filter="url(#flameGlow)"/>
+              </g>
+              <g class="candle-svg" transform="translate(217 52)">
+                <rect x="-5" y="10" width="10" height="42" rx="4" fill="#f37aa8"/>
+                <path d="M-5 18 L5 12 M-5 31 L5 25 M-5 44 L5 38" stroke="#fff5f8" stroke-width="3"/>
+                <rect x="-1" y="4" width="2" height="8" rx="1" fill="#55434a"/>
+                <g class="smoke-svg"><path d="M0 1 C7 -8 -8 -15 2 -27" fill="none" stroke="#9d969a" stroke-width="3" stroke-linecap="round" opacity=".55"/></g>
+                <path class="flame-svg" d="M0 3 C-10 -6 -5 -22 1 -27 C10 -18 10 -4 0 3Z" fill="url(#flameGrad)" filter="url(#flameGlow)"/>
+              </g>
+            </g>
+          </svg>
+        </div>
+
+        <div class="blow-actions">
+          <button id="blowBtn" class="blow-btn">Blow out the candles 💨</button>
+          <button id="tapFallbackBtn" class="fallback-btn">Tap instead</button>
+        </div>
+        <p id="candleHint" class="hint">Make your wish first ♡</p>
+      </div>
+    </section>
+
+    <!-- FINAL -->
+    <section class="screen finale" data-step="5">
+      <div class="final-scroll">
+        <div class="final-center">
+          <div class="final-ornament">♡ ✦ 26 ✦ ♡</div>
+          <p class="eyebrow">THE PART I REALLY WANTED YOU TO READ</p>
+          <h1>Happy Birthday,<br><span>Linouuuuuuuuuche ♡</span></h1>
+
+          <p class="final-sub">
+            My favorite person. My pretty girl. The cutest doctor.
+          </p>
+
+          <div class="final-letter">
+            <div class="letter-ribbon">FOR YOU ♡</div>
+
+            <p>
+              Today, I don’t just wish you a happy birthday.
+              I wish you <strong>a life that feels beautiful to live.</strong>
+            </p>
+
+            <p>
+              I hope 26 gives you peaceful mornings, good health,
+              success that makes you proud, people who care about you properly,
+              and love that never makes you question how valuable you are.
+            </p>
+
+            <p>
+              I hope there are more days where you come home feeling satisfied instead of exhausted,
+              more moments where you stop and think <em>“I’m actually proud of myself,”</em>
+              and more little surprises that make your eyes light up.
+            </p>
+
+            <div class="center-love">
+              <small>PLEASE REMEMBER THIS</small>
+              <strong>You deserve care too.</strong>
+              <span>You deserve softness, attention, patience, and beautiful things — not only today.</span>
+            </div>
+
+            <p>
+              I hope you travel somewhere beautiful.
+              I hope you laugh until your stomach hurts.
+              I hope you sleep peacefully.
+              I hope you wear things that make you feel gorgeous.
+              I hope your hard work opens doors.
+              And I hope your heart feels safe.
+            </p>
+
+            <p>
+              Stay cute. Stay brilliant. Stay soft.
+              Stay exactly the special girl you are.
+            </p>
+          </div>
+
+          <div class="final-wishes">
+            <article>
+              <span>♡</span>
+              <strong>For your heart</strong>
+              <p>Love that feels calm, clear, and real.</p>
+            </article>
+            <article>
+              <span>✦</span>
+              <strong>For your future</strong>
+              <p>Success, opportunities, and dreams becoming real.</p>
+            </article>
+            <article>
+              <span>☁</span>
+              <strong>For your mind</strong>
+              <p>Peace, rest, and fewer things keeping you awake at night.</p>
+            </article>
+          </div>
+
+          <div class="final-signature">
+            <small>WITH A LOT OF LOVE</small>
+            <strong>Happy 26th, Linouuuuuuuuuche 🎀</strong>
+            <span>I hope your wish comes true — and then some.</span>
+          </div>
+
+          <button id="secretBtn" class="secret-btn">One last tiny detail ♡</button>
+          <div id="secretText" class="secret-text">
+            <span class="rx-mini">℞</span>
+            <strong>Final prescription:</strong>
+            <p>Keep being Linouuuuuuuuuche. No substitute available. ♡</p>
+          </div>
+
+          <button id="hugBtn" class="primary">One more little hug ♡</button>
+          <button id="replayBtn" class="secondary">Replay</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <audio id="birthdayAudio" preload="auto" src="assets/birthday-song.mp3"></audio>
+  <script src="script.js"></script>
+</body>
+</html>
