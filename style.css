@@ -892,3 +892,163 @@ body{
 button{
   touch-action:manipulation;
 }
+
+
+/* =========================================================
+   MOBILE SCROLL V2 — HARD FIX
+   The active screen uses ordinary document flow on phones.
+   This removes the full-screen flex scroll trap seen on Android.
+   ========================================================= */
+
+@media (max-width:700px){
+
+  html,
+  body{
+    width:100% !important;
+    height:auto !important;
+    min-height:100% !important;
+    overflow-x:hidden !important;
+    overflow-y:auto !important;
+    position:static !important;
+    touch-action:auto !important;
+  }
+
+  body{
+    -webkit-overflow-scrolling:touch !important;
+  }
+
+  .app{
+    position:relative !important;
+    display:block !important;
+    width:100% !important;
+    max-width:430px !important;
+    height:auto !important;
+    min-height:100dvh !important;
+    overflow:visible !important;
+    margin:0 auto !important;
+  }
+
+  .screen{
+    position:relative !important;
+    width:100% !important;
+    height:auto !important;
+    min-height:100dvh !important;
+    max-height:none !important;
+    overflow:visible !important;
+    padding-top:max(84px, calc(66px + env(safe-area-inset-top))) !important;
+    padding-bottom:max(34px, calc(22px + env(safe-area-inset-bottom))) !important;
+    touch-action:auto !important;
+  }
+
+  /* Most important change: no flex viewport container on phones. */
+  .screen.active{
+    display:block !important;
+  }
+
+  .screen:not(.active){
+    display:none !important;
+  }
+
+  .screen .content{
+    display:block !important;
+    width:100% !important;
+    margin:0 !important;
+    overflow:visible !important;
+  }
+
+  .screen .content.center{
+    text-align:center !important;
+  }
+
+  /* Restore centering for children that relied on flex-center. */
+  .center > .cover-emblem,
+  .center > .page-number,
+  .center > .mode-switch,
+  .center > .off-duty-card,
+  .center > .blow-actions{
+    margin-left:auto !important;
+    margin-right:auto !important;
+  }
+
+  .bottom{
+    width:100% !important;
+    margin-top:28px !important;
+    padding-top:0 !important;
+    position:relative !important;
+  }
+
+  .details-scroll,
+  .cake-scroll,
+  .final-scroll{
+    position:relative !important;
+    display:block !important;
+    width:100% !important;
+    height:auto !important;
+    min-height:0 !important;
+    max-height:none !important;
+    overflow:visible !important;
+    margin:0 !important;
+    padding-bottom:20px !important;
+    touch-action:auto !important;
+  }
+
+  .cake-stage,
+  .final-center,
+  .wish-editorial,
+  .rx-paper{
+    touch-action:auto !important;
+  }
+
+  /* Ensure long content contributes to the document's height. */
+  .rx-paper,
+  .wish-editorial,
+  .birthday-duty,
+  .final-letter,
+  .final-wishes,
+  .final-signature{
+    position:relative !important;
+    overflow:visible !important;
+  }
+
+  /* Prevent SVG/cake from swallowing vertical gestures. */
+  .luxury-cake,
+  .cake-stage{
+    pointer-events:none;
+  }
+
+  /* Buttons still need clicks. */
+  button{
+    touch-action:manipulation !important;
+  }
+
+  .blow-actions button,
+  .primary,
+  .secondary,
+  .mode-switch,
+  .stamp-btn,
+  .secret-btn{
+    pointer-events:auto;
+  }
+}
+
+/* On narrow Android phones the header must not force horizontal overflow. */
+@media (max-width:430px){
+  .topbar{
+    grid-template-columns:minmax(0,1fr) auto auto !important;
+    column-gap:8px;
+  }
+
+  .brand{
+    min-width:0;
+    max-width:160px;
+    line-height:1.25;
+    white-space:normal;
+    overflow-wrap:anywhere;
+  }
+}
+
+@media (max-width:375px){
+  .brand{
+    max-width:135px;
+  }
+}
