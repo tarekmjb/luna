@@ -40,6 +40,13 @@ function floatBurst(count=15,chars=["♡","✦","🎀"]){
   }
 }
 
+
+// Unlock the birthday MP3 on the first genuine user interaction.
+// This does not make any audible sound.
+["pointerdown","touchstart","click"].forEach(evt=>{
+  document.addEventListener(evt, unlockBirthdayAudio, {once:true, passive:true});
+});
+
 /* birthday mode */
 const modeSwitch=document.getElementById("modeSwitch");
 const modeLabel=document.getElementById("modeLabel");
@@ -91,19 +98,86 @@ function playBlowSound(){
     setTimeout(()=>{if(ctx.state!=="closed")ctx.close()},1500);
   }catch(e){}
 }
+let birthdayAudioUnlocked=false;
+let birthdayAudioArmed=false;
+
+function unlockBirthdayAudio(){
+  const a=document.getElementById("birthdayAudio");
+  if(!a || birthdayAudioUnlocked) return;
+
+  try{
+    const oldVolume=a.volume;
+    a.volume=0;
+    a.currentTime=0;
+
+    const p=a.play();
+    if(p && typeof p.then==="function"){
+      p.then(()=>{
+        a.pause();
+        a.currentTime=0;
+        a.volume=oldVolume || .9;
+        birthdayAudioUnlocked=true;
+      }).catch(()=>{});
+    }
+  }catch(e){}
+}
+
+function armBirthdayAudio(){
+  const a=document.getElementById("birthdayAudio");
+  if(!a) return;
+
+  try{
+    a.pause();
+    a.currentTime=0;
+    a.volume=0;
+
+    // Start the MP3 while we are still inside the user's tap.
+    // Mobile browsers then allow us to reveal the sound later,
+    // even after waiting for microphone/blow detection.
+    const p=a.play();
+    if(p && typeof p.then==="function"){
+      p.then(()=>{
+        birthdayAudioUnlocked=true;
+        birthdayAudioArmed=true;
+      }).catch(()=>{
+        birthdayAudioArmed=false;
+      });
+    }
+  }catch(e){}
+}
+
 function playBirthdayAudio(){
   const a=document.getElementById("birthdayAudio");
   if(!a)return;
+
   try{
-    a.pause();a.currentTime=0;a.volume=.08;
-    const p=a.play();
-    if(p&&p.then)p.then(()=>{
-      let v=.08;
+    // If it was armed silently when the user tapped "Blow out the candles",
+    // restart it from the beginning and fade it in.
+    a.currentTime=0;
+    a.volume=.04;
+
+    const startFade=()=>{
+      let v=.04;
       const f=setInterval(()=>{
-        v=Math.min(.9,v+.08);a.volume=v;
-        if(v>=.9)clearInterval(f);
-      },90);
-    }).catch(()=>{});
+        v=Math.min(.92,v+.07);
+        a.volume=v;
+        if(v>=.92) clearInterval(f);
+      },85);
+    };
+
+    if(!a.paused){
+      startFade();
+      birthdayAudioArmed=false;
+      return;
+    }
+
+    const p=a.play();
+    if(p && typeof p.then==="function"){
+      p.then(()=>{
+        birthdayAudioUnlocked=true;
+        startFade();
+      }).catch(()=>{});
+    }
   }catch(e){}
 }
 
@@ -190,8 +264,14 @@ async function startBreath(){
     candleHint.textContent="Mic blocked — tap instead ♡";
   }
 }
-blowBtn.addEventListener("click",startBreath);
-tapFallbackBtn.addEventListener("click",extinguish);
+blowBtn.addEventListener("click",()=>{
+  armBirthdayAudio();
+  startBreath();
+});
+tapFallbackBtn.addEventListener("click",()=>{
+  armBirthdayAudio();
+  extinguish();
+});
 
 /* final */
 const secretBtn=document.getElementById("secretBtn");
@@ -205,7 +285,12 @@ document.getElementById("hugBtn").addEventListener("click",()=>floatBurst(36,["�
 document.getElementById("replayBtn").addEventListener("click",()=>{
   cleanupMic();
   const a=document.getElementById("birthdayAudio");
-  if(a){a.pause();a.currentTime=0}
+  if(a){
+    a.pause();
+    a.currentTime=0;
+    a.volume=.9;
+  }
+  birthdayAudioArmed=false;
   modeDone=false;modeSwitch.classList.remove("active");modeLabel.textContent="ON DUTY";offDutyCard.classList.remove("show");
   stamped=false;stampBtn.classList.remove("stamped");stampMark.textContent="APPROVE ♡";stampHint.textContent="Tap the seal to make it official.";
   blown=false;cake.classList.remove("out");candleHint.textContent="Make your wish first ♡";blowBtn.textContent="Blow out the candles 💨";blowBtn.style.opacity="1";tapFallbackBtn.disabled=false;tapFallbackBtn.style.opacity="1";
