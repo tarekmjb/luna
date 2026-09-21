@@ -14,9 +14,10 @@ function showStep(i){
 
   // Native mobile scrolling: always open the next screen at its top.
   requestAnimationFrame(()=>{
-    window.scrollTo({top:0,left:0,behavior:"auto"});
     document.documentElement.scrollTop=0;
     document.body.scrollTop=0;
+    window.scrollTo(0,0);
+    setTimeout(()=>window.scrollTo(0,0),20);
   });
 
   buzz(10);
@@ -209,7 +210,50 @@ document.getElementById("replayBtn").addEventListener("click",()=>{
   stamped=false;stampBtn.classList.remove("stamped");stampMark.textContent="APPROVE ♡";stampHint.textContent="Tap the seal to make it official.";
   blown=false;cake.classList.remove("out");candleHint.textContent="Make your wish first ♡";blowBtn.textContent="Blow out the candles 💨";blowBtn.style.opacity="1";tapFallbackBtn.disabled=false;tapFallbackBtn.style.opacity="1";
   secretText.classList.remove("show");
-  showStep(0);
+  
+
+/* =========================================================
+   Android/iOS touch-scroll fallback
+   If a browser does not move the document during a vertical swipe,
+   manually scroll it by the finger delta.
+   ========================================================= */
+(function installMobileScrollFallback(){
+  let startY = 0;
+  let lastY = 0;
+  let startScrollY = 0;
+  let moved = false;
+
+  document.addEventListener("touchstart", function(e){
+    if(!e.touches || e.touches.length !== 1) return;
+    const t = e.touches[0];
+    startY = t.clientY;
+    lastY = t.clientY;
+    startScrollY = window.scrollY || document.documentElement.scrollTop || 0;
+    moved = false;
+  }, {passive:true});
+
+  document.addEventListener("touchmove", function(e){
+    if(!e.touches || e.touches.length !== 1) return;
+
+    const target = e.target;
+    if(target && target.closest && target.closest("button")) return;
+
+    const y = e.touches[0].clientY;
+    const delta = lastY - y;
+    if(Math.abs(y - startY) > 6) moved = true;
+
+    const currentScroll = window.scrollY || document.documentElement.scrollTop || 0;
+
+    // If native scrolling hasn't reacted, apply the gesture ourselves.
+    if(moved && Math.abs(currentScroll - startScrollY) < 2 && Math.abs(delta) > 1){
+      window.scrollBy(0, delta);
+    }
+
+    lastY = y;
+  }, {passive:true});
+})();
+
+showStep(0);
 });
 
 function confetti(){
@@ -234,4 +278,47 @@ function confetti(){
 }
 
 window.addEventListener("resize",()=>{const c=document.getElementById("confetti");c.width=innerWidth;c.height=innerHeight});
+
+
+/* =========================================================
+   Android/iOS touch-scroll fallback
+   If a browser does not move the document during a vertical swipe,
+   manually scroll it by the finger delta.
+   ========================================================= */
+(function installMobileScrollFallback(){
+  let startY = 0;
+  let lastY = 0;
+  let startScrollY = 0;
+  let moved = false;
+
+  document.addEventListener("touchstart", function(e){
+    if(!e.touches || e.touches.length !== 1) return;
+    const t = e.touches[0];
+    startY = t.clientY;
+    lastY = t.clientY;
+    startScrollY = window.scrollY || document.documentElement.scrollTop || 0;
+    moved = false;
+  }, {passive:true});
+
+  document.addEventListener("touchmove", function(e){
+    if(!e.touches || e.touches.length !== 1) return;
+
+    const target = e.target;
+    if(target && target.closest && target.closest("button")) return;
+
+    const y = e.touches[0].clientY;
+    const delta = lastY - y;
+    if(Math.abs(y - startY) > 6) moved = true;
+
+    const currentScroll = window.scrollY || document.documentElement.scrollTop || 0;
+
+    // If native scrolling hasn't reacted, apply the gesture ourselves.
+    if(moved && Math.abs(currentScroll - startScrollY) < 2 && Math.abs(delta) > 1){
+      window.scrollBy(0, delta);
+    }
+
+    lastY = y;
+  }, {passive:true});
+})();
+
 showStep(0);
