@@ -1052,3 +1052,9 @@ button{
     max-width:135px;
   }
 }
+
+
+/* Sound hard-fix build marker; no visual/layout changes. */
+audio#birthdayAudio{
+  display:none !important;
+}
