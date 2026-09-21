@@ -69,3 +69,13 @@ This version explicitly unlocks/arms the audio during a user gesture so iPhone/A
 - previous mobile-audio race condition removed
 - CSS/JS cache-busting enabled
 - mobile scrolling/design left unchanged
+
+
+## Personal page update
+Replaced the old generic “What I hope 26 feels like” list with a more personal page:
+- On hard days
+- On beautiful days
+- On ordinary days
+- And always
+
+The sound hard-fix and mobile scrolling remain unchanged.

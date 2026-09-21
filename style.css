@@ -1058,3 +1058,99 @@ button{
 audio#birthdayAudio{
   display:none !important;
 }
+
+
+/* Personal moments page */
+.personal-moments{
+  display:grid;
+  gap:12px;
+  margin-top:20px;
+}
+.moment-card{
+  position:relative;
+  padding:20px 18px;
+  border-radius:24px;
+  text-align:left;
+  background:rgba(255,255,255,.79);
+  border:1px solid rgba(255,255,255,.93);
+  box-shadow:var(--shadow);
+}
+.moment-card:before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:20px;
+  bottom:20px;
+  width:3px;
+  border-radius:99px;
+  background:linear-gradient(180deg,#ef7cab,#d7b8ff);
+}
+.moment-tag{
+  display:block;
+  padding-left:8px;
+  margin-bottom:8px;
+  font-size:9px;
+  letter-spacing:.17em;
+  font-weight:700;
+  color:#c56a91;
+}
+.moment-card strong{
+  display:block;
+  padding-left:8px;
+  margin-bottom:8px;
+  font-family:"Playfair Display",serif;
+  font-size:24px;
+  line-height:1.15;
+  color:#a95073;
+}
+.moment-card p{
+  margin:0;
+  padding-left:8px;
+  font-size:13px;
+  line-height:1.68;
+  color:#927483;
+}
+.final-moment{
+  background:linear-gradient(180deg,#fff5f9,#fffafd);
+}
+.final-moment strong{
+  color:#b64f76;
+}
+.favorite-line{
+  margin:18px 0 20px;
+  padding:20px 17px;
+  border-radius:24px;
+  text-align:center;
+  background:linear-gradient(180deg,#fff2f7,#fff9fb);
+  border:1px solid rgba(255,255,255,.95);
+  box-shadow:var(--shadow);
+}
+.favorite-line small{
+  display:block;
+  margin-bottom:8px;
+  font-size:9px;
+  letter-spacing:.17em;
+  font-weight:700;
+  color:#ad7c91;
+}
+.favorite-line strong{
+  display:block;
+  font-family:"Playfair Display",serif;
+  font-size:26px;
+  line-height:1.12;
+  color:#b95279;
+}
+@media(max-width:375px){
+  .moment-card{
+    padding:18px 15px;
+  }
+  .moment-card strong{
+    font-size:22px;
+  }
+  .moment-card p{
+    font-size:12.5px;
+  }
+  .favorite-line strong{
+    font-size:24px;
+  }
+}
